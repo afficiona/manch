@@ -35,7 +35,8 @@ function OAuthAuthorizeContent() {
     try {
       const token = localStorage.getItem('manch_token');
 
-      const response = await fetch('http://localhost:3000/api/oauth/authorize/approve', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+      const response = await fetch(`${apiUrl}/oauth/authorize/approve`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
