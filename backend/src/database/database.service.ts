@@ -8,7 +8,9 @@ export class DatabaseService implements OnModuleInit {
 
   onModuleInit() {
     const DatabaseConstructor = (Database as any).default || Database;
-    this.db = new DatabaseConstructor(path.join(__dirname, '../../manch.db'));
+    // Use /app/data for persistent storage on Fly.io, fallback to local for development
+    const dbPath = process.env.DATABASE_PATH || path.join(__dirname, '../../manch.db');
+    this.db = new DatabaseConstructor(dbPath);
     this.initializeTables();
   }
 

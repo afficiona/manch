@@ -3,3 +3,5 @@ dist/
 .env
 .env.local
 *.db
+.fly/
+fly.toml.bak
