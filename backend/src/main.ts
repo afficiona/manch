@@ -8,7 +8,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   // Enable CORS for frontend
-  const allowedOrigins = [
+  const allowedOrigins: (string | RegExp)[] = [
     'http://localhost:3000', 'http://localhost:3002', // Manch local
     'http://localhost:3001', 'http://localhost:3003', // Prasaran local
     'http://localhost:3100', 'http://localhost:3102', // Adda local
@@ -30,12 +30,12 @@ async function bootstrap() {
   }
 
   app.enableCors({
-    origin: (origin, callback) => {
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
       // Allow requests with no origin (like mobile apps or Postman)
       if (!origin) return callback(null, true);
 
       // Check if origin is allowed
-      const isAllowed = allowedOrigins.some(allowed => {
+      const isAllowed = allowedOrigins.some((allowed: string | RegExp) => {
         if (typeof allowed === 'string') return allowed === origin;
         if (allowed instanceof RegExp) return allowed.test(origin);
         return false;
