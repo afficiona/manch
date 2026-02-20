@@ -41,6 +41,7 @@ function OAuthAuthorizeContent() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           client_id: clientId,
           redirect_uri: redirectUri,

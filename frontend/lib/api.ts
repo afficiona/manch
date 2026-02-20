@@ -41,6 +41,7 @@ class ApiClient {
     const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: 'POST',
       headers: this.getHeaders(),
+      credentials: 'include',
       body: JSON.stringify({ email, password, name }),
     });
 
@@ -56,6 +57,7 @@ class ApiClient {
     const response = await fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: this.getHeaders(),
+      credentials: 'include',
       body: JSON.stringify({ email, password }),
     });
 
@@ -73,6 +75,7 @@ class ApiClient {
   async getPosts(): Promise<Post[]> {
     const response = await fetch(`${API_BASE_URL}/posts`, {
       headers: this.getHeaders(),
+      credentials: 'include',
     });
 
     if (!response.ok) {
@@ -85,6 +88,7 @@ class ApiClient {
   async getMyPosts(): Promise<Post[]> {
     const response = await fetch(`${API_BASE_URL}/posts/my`, {
       headers: this.getHeaders(true),
+      credentials: 'include',
     });
 
     if (!response.ok) {
@@ -98,6 +102,7 @@ class ApiClient {
     const response = await fetch(`${API_BASE_URL}/posts`, {
       method: 'POST',
       headers: this.getHeaders(true),
+      credentials: 'include',
       body: JSON.stringify({ content }),
     });
 
